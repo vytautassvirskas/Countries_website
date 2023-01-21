@@ -1,0 +1,27 @@
+@import "../../assets/sass/variables.scss";
+.card {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.6rem;
+  background-color: $c-white;
+  margin-bottom: 1.6rem;
+  border-radius: 0.6rem;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title {
+  margin-right: 0.6rem;
+  sup {
+    font-size: $fs-sup;
+  }
+}
+.information {
+  padding: 0.3rem 0.5rem;
+  color: $c-cyan;
+  font-size: $fs-heading-small;
+  background-color: $c-lightCyan;
+  border-radius: 0.3rem;
+}

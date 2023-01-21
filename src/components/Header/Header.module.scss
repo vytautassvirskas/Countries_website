@@ -1,0 +1,21 @@
+@import "../../assets/sass/variables.scss";
+
+.header {
+  display: flex;
+  background-color: $c-cyan;
+  padding: 1.8rem 5rem;
+}
+.logo {
+  font-size: $fs-heading-medium;
+  color: $c-veryDarkCyan;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: $fw-bold;
+}
+.sorter {
+  margin-left: auto;
+  padding: 0.6rem;
+  border-radius: 0.6rem;
+  border: none;
+  outline: none;
+}
