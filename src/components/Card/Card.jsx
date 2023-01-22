@@ -14,7 +14,7 @@ const Card = ({ country, index }) => {
       </div>
       <div className={style.wrapper}>
         <p className={style.title}>
-          Area, sq.m<sup>2</sup>:
+          Area, m<sup>2</sup>:
         </p>
         <p className={style.information}>{country.area}</p>
       </div>

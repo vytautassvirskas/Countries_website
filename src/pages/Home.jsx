@@ -7,14 +7,20 @@ import style from "./Home.module.scss";
 
 const Home = () => {
   const {
-    data,
-    setData,
+    dataApi,
+    setDataApi,
     sortType,
     setSortType,
     filterRegion,
     setFilterRegion,
+    filterSize,
+    setFilterSize,
   } = useContext(MainContext);
+  const [data, setData] = useState([]);
   const search = useLocation().search;
+  useEffect(() => {
+    setData(dataApi);
+  }, [dataApi]);
 
   //   check is it sorted
   useEffect(() => {
@@ -31,9 +37,23 @@ const Home = () => {
     setData(sortedData);
   }, [sortType]);
 
+  //filter by region
   useEffect(() => {
-    setData(data.filter((country) => country.region === filterRegion));
+    setData(dataApi.filter((country) => country.region === filterRegion));
   }, [filterRegion]);
+
+  //filter by size
+  useEffect(() => {
+    if (filterSize) {
+      console.log(
+        "lithuania size: ",
+        dataApi.find((country) => country.name === filterSize).area
+      );
+      const area = dataApi.find((country) => country.name === filterSize).area;
+      console.log("area", area);
+      setData(dataApi.filter((country) => country.area < area));
+    }
+  }, [filterSize]);
 
   //data tikrina po pasikeitimo
   useEffect(() => {

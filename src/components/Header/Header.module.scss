@@ -19,3 +19,7 @@
   border: none;
   outline: none;
 }
+.region {
+  @extend .sorter;
+  margin-left: 0;
+}
