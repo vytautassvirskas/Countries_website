@@ -5,10 +5,8 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-
 import RootLayout from "./components/RootLayout/RootLayout.jsx";
 import Home from "./pages/Home.jsx";
-
 import style from "./App.module.scss";
 
 function App() {
