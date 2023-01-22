@@ -5,11 +5,43 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import RootLayout from "./components/RootLayout/RootLayout.jsx";
-import Home from "./pages/Home.jsx";
+import MainContext from "./context/MainContext.js";
 import style from "./App.module.scss";
 
+import RootLayout from "./components/RootLayout/RootLayout.jsx";
+import Home from "./pages/Home.jsx";
+
 function App() {
+  const [data, setData] = useState([]);
+  const [sortType, setSortType] = useState("");
+  const [filterRegion, setFilterRegion] = useState("");
+
+  const contextValues = {
+    data,
+    setData,
+    sortType,
+    setSortType,
+    filterRegion,
+    setFilterRegion,
+  };
+
+  //fetching data
+  useEffect(() => {
+    console.log("siunciasi data");
+    const fetchData = async () => {
+      try {
+        const url = "https://restcountries.com/v2/all?fields=name,region,area";
+        const resp = await fetch(url);
+        const countriesData = await resp.json();
+        setData(countriesData);
+        console.log("countriesData: ", countriesData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
@@ -20,7 +52,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router}></RouterProvider>
+      <MainContext.Provider value={contextValues}>
+        <RouterProvider router={router}></RouterProvider>
+      </MainContext.Provider>
     </>
   );
 }

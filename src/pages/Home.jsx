@@ -1,37 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
+import MainContext from "../context/MainContext.js";
 import Wrapper from "../components/Wrapper/Wrapper.jsx";
 import Card from "../components/Card/Card.jsx";
 import style from "./Home.module.scss";
 
 const Home = () => {
-  const [data, setData] = useState([]);
+  const {
+    data,
+    setData,
+    sortType,
+    setSortType,
+    filterRegion,
+    setFilterRegion,
+  } = useContext(MainContext);
   const search = useLocation().search;
-
-  const sortType = new URLSearchParams(search).get("sort");
-  const filterType = new URLSearchParams(search).get("filter");
-
-  // console.log(
-  //   "visas URLsearchParams objekas",
-  //   new URLSearchParams(search).get("filter")
-  // );
-  
-  //fetching data
-  useEffect(() => {
-    console.log("siunciasi data");
-    const fetchData = async () => {
-      try {
-        const url = "https://restcountries.com/v2/all?fields=name,region,area";
-        const resp = await fetch(url);
-        const countriesData = await resp.json();
-        setData(countriesData);
-        console.log(countriesData);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
 
   //   check is it sorted
   useEffect(() => {
@@ -39,7 +22,7 @@ const Home = () => {
     if (sortType === "Z-A") {
       const sortedData = [...data].sort((a, b) => b.name.localeCompare(a.name));
       // console.log(sortedData);
-      setData(sortedData); 
+      setData(sortedData);
       return;
     }
 
@@ -48,9 +31,13 @@ const Home = () => {
     setData(sortedData);
   }, [sortType]);
 
+  useEffect(() => {
+    setData(data.filter((country) => country.region === filterRegion));
+  }, [filterRegion]);
+
   //data tikrina po pasikeitimo
   useEffect(() => {
-    console.log("data pasikeite");
+    console.log("data pasikeite:", data);
   }, [data]);
 
   console.log("HOme componentas renderinasi");

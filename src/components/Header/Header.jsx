@@ -1,22 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-
+import MainContext from "../../context/MainContext.js";
 import style from "./Header.module.scss";
 
 const Header = () => {
-  const navigate = useNavigate(); //gal sito nereikes jau
+  const {
+    data,
+    setData,
+    sortType,
+    setSortType,
+    filterRegion,
+    setFilterRegion,
+  } = useContext(MainContext);
+
   const search = useLocation().search;
   const searchParams = new URLSearchParams(search);
 
   const handleSort = (e) => {
     const value = e.target.value;
-    value === "A-Z"
-      ? navigate("?sort=" + value)
-      : e.target.value === "Z-A" && navigate("?sort=" + value);
+    setSortType(value);
+    searchParams.set("sort", value);
+    const newUrl = `${location.pathname}?${searchParams.toString()}`;
+    window.history.pushState({}, "", newUrl);
   };
 
   const handleFilter = (e) => {
     const value = e.target.value;
+    setFilterRegion(value);
     searchParams.set("filter", value);
     const newUrl = `${location.pathname}?${searchParams.toString()}`;
     window.history.pushState({}, "", newUrl);
