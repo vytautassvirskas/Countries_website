@@ -3,12 +3,13 @@ import { useLocation } from "react-router-dom";
 import MainContext from "../context/MainContext.js";
 import Wrapper from "../components/Wrapper/Wrapper.jsx";
 import Card from "../components/Card/Card.jsx";
+import Pagination from "../components/Pagination/Pagination.jsx";
 import style from "./Home.module.scss";
 
 const Home = () => {
   const {
-    dataApi,
-    setDataApi,
+    data,
+    setData,
     sortType,
     setSortType,
     filterRegion,
@@ -16,54 +17,51 @@ const Home = () => {
     filterSize,
     setFilterSize,
   } = useContext(MainContext);
-  const [data, setData] = useState([]);
-  const search = useLocation().search;
-  useEffect(() => {
-    setData(dataApi);
-  }, [dataApi]);
 
-  //   check is it sorted
-  useEffect(() => {
-    //sorted by Z-A
-    if (sortType === "Z-A") {
-      const sortedData = [...data].sort((a, b) => b.name.localeCompare(a.name));
-      // console.log(sortedData);
-      setData(sortedData);
-      return;
-    }
+  const [currentPage, setCurrentPage] = useState(1);
+  const [countriesPerPage] = useState(10);
+  const [totalPages, setTotalPages] = useState(null);
+  const [paginatedData, setPaginatedData] = useState([]);
 
-    //sorted by A-Z
-    const sortedData = [...data].sort((a, b) => a.name.localeCompare(b.name));
-    setData(sortedData);
-  }, [sortType]);
-
-  //filter by region
   useEffect(() => {
-    setData(dataApi.filter((country) => country.region === filterRegion));
-  }, [filterRegion]);
-
-  //filter by size
-  useEffect(() => {
+    let dataCopy = [...data];
     if (filterSize) {
-      console.log(
-        "lithuania size: ",
-        dataApi.find((country) => country.name === filterSize).area
-      );
-      const area = dataApi.find((country) => country.name === filterSize).area;
-      console.log("area", area);
-      setData(dataApi.filter((country) => country.area < area));
+      const area = data.find((country) => country.name === filterSize).area;
+      dataCopy = dataCopy.filter((country) => country.area < area);
     }
-  }, [filterSize]);
+
+    if (filterRegion) {
+      dataCopy = dataCopy.filter((country) => country.region === filterRegion);
+    }
+
+    // apply sort criteria
+    if (sortType === "Z-A") {
+      dataCopy.sort((a, b) => b.name.localeCompare(a.name));
+    } else if (sortType === "A-Z") {
+      dataCopy.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    const indexOfLastCountry = currentPage * countriesPerPage;
+    const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+    setTotalPages(Math.ceil(dataCopy.length / countriesPerPage));
+    setPaginatedData(dataCopy.slice(indexOfFirstCountry, indexOfLastCountry));
+  }, [currentPage, filterSize, sortType, filterRegion, data]);
 
   //data tikrina po pasikeitimo
   useEffect(() => {
-    console.log("data pasikeite:", data);
-  }, [data]);
+    console.log("paginatedData pasikeite:", paginatedData);
+  }, [paginatedData]);
 
   console.log("HOme componentas renderinasi");
   return (
     <Wrapper heading={"All countries MAIN langas"}>
-      {data.map((country, i) => (
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        countriesPerPage={countriesPerPage}
+      ></Pagination>
+      {paginatedData.map((country, i) => (
         <Card key={i} country={country} index={i}></Card>
       ))}
     </Wrapper>

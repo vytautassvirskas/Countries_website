@@ -12,14 +12,14 @@ import RootLayout from "./components/RootLayout/RootLayout.jsx";
 import Home from "./pages/Home.jsx";
 
 function App() {
-  const [dataApi, setDataApi] = useState([]);
+  const [data, setData] = useState([]);
   const [sortType, setSortType] = useState("");
   const [filterRegion, setFilterRegion] = useState("");
   const [filterSize, setFilterSize] = useState("");
 
   const contextValues = {
-    dataApi,
-    setDataApi,
+    data,
+    setData,
     sortType,
     setSortType,
     filterRegion,
@@ -36,7 +36,7 @@ function App() {
         const url = "https://restcountries.com/v2/all?fields=name,region,area";
         const resp = await fetch(url);
         const countriesData = await resp.json();
-        setDataApi(countriesData);
+        setData(countriesData);
         console.log("countriesData: ", countriesData);
       } catch (error) {
         console.log(error);
@@ -50,7 +50,7 @@ function App() {
   //regions array from data reikia perkelti i APP useefecta, kad ten is karto parsiuntus data, kad sukurtu array
   // useEffect(() => {
   //   console.log("header component useEffect veikia");
-  // }, [dataApi]);
+  // }, [data]);
 
   const router = createBrowserRouter(
     createRoutesFromElements(

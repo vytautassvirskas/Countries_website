@@ -5,8 +5,8 @@ import style from "./Header.module.scss";
 
 const Header = () => {
   const {
-    dataApi,
-    setDataApi,
+    data,
+    setData,
     sortType,
     setSortType,
     filterRegion,
