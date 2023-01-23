@@ -52,6 +52,11 @@ const Home = () => {
     console.log("paginatedData pasikeite:", paginatedData);
   }, [paginatedData]);
 
+  //total page change
+  useEffect(() => {
+    console.log("totalPages pasikeite home komponente", totalPages);
+  }, [totalPages]);
+
   console.log("HOme componentas renderinasi");
   return (
     <Wrapper heading={"All countries MAIN langas"}>

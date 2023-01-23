@@ -26,26 +26,24 @@ const Pagination = (props) => {
   const getPaginationGroup = () => {
     let start =
       Math.floor((currentPage - 1) / countriesPerPage) * countriesPerPage;
+    let startLastPage =
+      Math.floor((totalPages - 1) / countriesPerPage) * countriesPerPage;
+
+    if (totalPages <= countriesPerPage) {
+      return [...Array(totalPages).keys()].map((i) => i + 1);
+    }
+    if (start >= startLastPage && start + countriesPerPage > totalPages) {
+      console.log("jau VEIKIA");
+      return new Array(totalPages - start)
+        .fill()
+        .map((number, index) => start + index + 1);
+    }
     return new Array(countriesPerPage)
       .fill()
       .map((number, index) => start + index + 1);
-    // if (totalPages <= countriesPerPage) {
-    //   return [...Array(totalPages).keys()].map((i) => i + 1);
-    // }
-
-    // //pages numbers changes all the time
-    // if (currentPage > 5) {
-    //   return new Array(countriesPerPage)
-    //     .fill()
-    //     .map((number, index) => currentPage + index - 5);
-    // } else {
-    //   return new Array(countriesPerPage)
-    //     .fill()
-    //     .map((number, index) => start + index + 1);
-    // }
   };
   const pageNumbers = getPaginationGroup();
-  console.log("pageNumbers pagination componente", pageNumbers);
+  // console.log("pageNumbers pagination componente", pageNumbers);
 
   return (
     <nav className={style.pagination}>
