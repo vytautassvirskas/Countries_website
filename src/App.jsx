@@ -37,9 +37,9 @@ function App() {
   };
 
   //filter size value checking
-  // useEffect(() => {
-  //   console.log("filterSize verte: ", filterSize);
-  // }, [filterSize]);
+  useEffect(() => {
+    console.log("currentPage verte app komponente: ", currentPage);
+  }, [currentPage]);
 
   //fetching data
   useEffect(() => {

@@ -13,9 +13,23 @@ const Header = () => {
     setFilterRegion,
     filterSize,
     setFilterSize,
+    currentPage,
+    setCurrentPage,
   } = useContext(MainContext);
   const search = useLocation().search;
   const searchParams = new URLSearchParams(search);
+
+  const handleReset = () => {
+    setCurrentPage(1);
+    setSortType("");
+    setFilterSize("");
+    setFilterRegion("");
+  };
+
+  const handleResetPage = () => {
+    setCurrentPage(1);
+    searchParams.set("p", 1);
+  };
 
   const handleUrlParams = (e, setState, param) => {
     const value = e.target.value;
@@ -27,35 +41,21 @@ const Header = () => {
 
   const handleSort = (e) => {
     handleUrlParams(e, setSortType, "sort");
-    // const value = e.target.value;
-    // setSortType(value);
-    // searchParams.set("sort", value);
-    // const newUrl = `${location.pathname}?${searchParams.toString()}`;
-    // window.history.pushState({}, "", newUrl);
   };
 
   const handleFilterSize = (e) => {
+    handleResetPage();
     handleUrlParams(e, setFilterSize, "filterSize");
-    // const value = e.target.value;
-    // setFilterSize(value);
-    // searchParams.set("filterSize", value);
-    // const newUrl = `${location.pathname}?${searchParams.toString()}`;
-    // window.history.pushState({}, "", newUrl);
   };
 
   const handleFilterRegion = (e) => {
+    handleResetPage();
     handleUrlParams(e, setFilterRegion, "filterRegion");
-
-    // const value = e.target.value;
-    // setFilterRegion(value);
-    // searchParams.set("filterRegion", value);
-    // const newUrl = `${location.pathname}?${searchParams.toString()}`;
-    // window.history.pushState({}, "", newUrl);
   };
 
   return (
     <header className={style.header}>
-      <Link to="/" className={style.logo}>
+      <Link to="/" className={style.logo} onClick={handleReset}>
         world countries
       </Link>
       <select
