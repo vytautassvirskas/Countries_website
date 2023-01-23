@@ -8,7 +8,6 @@ const Wrapper = ({ heading, children }) => {
         <h1 className={style.heading}>{heading}</h1>
         {children}
       </section>
-      ;
     </>
   );
 };

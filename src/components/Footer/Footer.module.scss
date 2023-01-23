@@ -1,0 +1,23 @@
+@import "../../assets/sass/variables.scss";
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $c-veryDarkCyan;
+  // background-color: $c-brown;
+}
+
+.logo-wrapper {
+  padding: 0.6rem 0;
+  cursor: pointer;
+}
+.logo {
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    scale: 1.05;
+  }
+}
