@@ -1,27 +1,32 @@
 @import "../../assets/sass/variables.scss";
 .card {
-  display: flex;
-  justify-content: space-between;
-  padding: 1.6rem;
-  background-color: $c-white;
-  margin-bottom: 1.6rem;
-  border-radius: 0.6rem;
+  @include cardTemplate;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+.card:last-child {
+  margin-bottom: 0;
+  // background-color: tomato;
+}
+.card:hover {
+  scale: 1.015;
+  border: 1px solid $c-veryDarkCyan;
+  border: 1px solid $c-cyan;
 }
 .wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.title {
-  margin-right: 0.6rem;
-  sup {
-    font-size: $fs-sup;
-  }
+  @include flexCenter;
 }
 .information {
+  text-align: center;
+  // width: min-content;
   padding: 0.3rem 0.5rem;
   color: $c-cyan;
   font-size: $fs-heading-small;
   background-color: $c-lightCyan;
   border-radius: 0.3rem;
+}
+
+.card:hover .information {
+  color: white;
+  background-color: $c-cyan;
 }

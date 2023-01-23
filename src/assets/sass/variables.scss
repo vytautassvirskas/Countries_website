@@ -14,9 +14,9 @@ $ff-primary: "League Spartan", sans-serif;
 
 /*font-size*/
 $fs-logo: 3rem;
-$fs-heading-large: 2.5rem;
-$fs-heading-medium: 2rem;
-$fs-heading-small: 1.4rem;
+$fs-heading-large: 2.2rem;
+$fs-heading-medium: 1.6rem;
+$fs-heading-small: 1.3rem;
 $fs-text: 1rem;
 $fs-sup: 0.6rem;
 
@@ -26,3 +26,30 @@ $fw-bold: 700;
 
 /* responsive */
 $rd-mobile: 768px;
+
+/*mixin*/
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin cardTemplate {
+  display: grid;
+  grid-template-columns: 0.7fr 1.6fr 1.4fr 1.2fr;
+  padding: 1rem;
+  background-color: $c-white;
+  margin-bottom: 1.2rem;
+  border-radius: 0.6rem;
+  border: 1px solid transparent;
+}
+
+/*animations*/
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

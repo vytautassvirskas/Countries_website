@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import MainContext from "../context/MainContext.js";
 import Wrapper from "../components/Wrapper/Wrapper.jsx";
+import TableHead from "../components/TableHead/TableHead.jsx";
 import Card from "../components/Card/Card.jsx";
 import Pagination from "../components/Pagination/Pagination.jsx";
 import style from "./Home.module.scss";
@@ -65,16 +66,17 @@ const Home = () => {
 
   console.log("HOme componentas renderinasi");
   return (
-    <Wrapper heading={"All countries MAIN langas"}>
+    <Wrapper heading={"Countries list"}>
+      <TableHead></TableHead>
+      {paginatedData.map((country, i) => (
+        <Card key={i} country={country} index={i}></Card>
+      ))}
       <Pagination
         totalPages={totalPages}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         countriesPerPage={countriesPerPage}
       ></Pagination>
-      {paginatedData.map((country, i) => (
-        <Card key={i} country={country} index={i}></Card>
-      ))}
     </Wrapper>
   );
 };

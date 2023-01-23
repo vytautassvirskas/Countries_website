@@ -5,7 +5,6 @@
   justify-content: center;
   align-items: center;
   background-color: $c-veryDarkCyan;
-  // background-color: $c-brown;
 }
 
 .logo-wrapper {
@@ -16,6 +15,7 @@
   width: 1.5rem;
   height: 1.5rem;
   transition: all 0.2s ease-in-out;
+  animation: logo-spin infinite 50s linear;
 
   &:hover {
     scale: 1.05;

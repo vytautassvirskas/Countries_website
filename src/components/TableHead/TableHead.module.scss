@@ -1,0 +1,16 @@
+@import "../../assets/sass/variables.scss";
+.head {
+  @include cardTemplate;
+}
+.wrapper {
+  @include flexCenter;
+}
+
+.title {
+  color: $c-veryDarkCyan;
+
+  sup {
+    font-size: $fs-sup;
+    font-weight: $fw-bold;
+  }
+}

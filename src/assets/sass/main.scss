@@ -4,4 +4,9 @@
 
 #root {
   font-family: $ff-primary;
+  background-color: $c-lightCyan;
+  background-image: url("../images/world-map.png");
+  background-position: center;
+  background-size: cover;
+  transition: all 0.2s ease-in-out;
 }

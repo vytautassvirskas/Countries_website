@@ -4,10 +4,11 @@
   display: flex;
   background-color: $c-cyan;
   padding: 1.8rem 5rem;
+  opacity: 0.8;
 }
 .logo {
   font-size: $fs-heading-medium;
-  color: $c-veryDarkCyan;
+  color: $c-white;
   text-decoration: none;
   text-transform: uppercase;
   font-weight: $fw-bold;
