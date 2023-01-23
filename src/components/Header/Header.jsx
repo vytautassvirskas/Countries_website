@@ -6,18 +6,30 @@ import style from "./Header.module.scss";
 const Header = () => {
   const {
     data,
-    setData,
     sortType,
     setSortType,
     filterRegion,
     setFilterRegion,
     filterSize,
     setFilterSize,
-    currentPage,
     setCurrentPage,
   } = useContext(MainContext);
+  // const [regionsArr, setRegionsArr] = useState([]);
   const search = useLocation().search;
   const searchParams = new URLSearchParams(search);
+
+  const regionsData = () => {
+    const regions = [];
+    [...data].forEach((country) => {
+      regions.push(country.region);
+    });
+    return new Set(regions);
+  };
+
+  const regionsArr = Array.from(regionsData());
+
+  console.log("regionsArr: ", regionsArr);
+  console.log("regionsArr typeof: ", typeof regionsArr);
 
   const handleReset = () => {
     setCurrentPage(1);
@@ -81,8 +93,15 @@ const Header = () => {
         onChange={(e) => handleFilterRegion(e)}
       >
         <option value=""> fitered by region</option>
-        <option value="Africa">Africa</option>
-        <option value="Oceania">Oceania</option>
+        {regionsArr.length > 0 &&
+          regionsArr.map((region, i) => {
+            console.log("speju nemapina duomenu");
+            return (
+              <option key={i} value={region}>
+                {region}
+              </option>
+            );
+          })}
       </select>
     </header>
   );
