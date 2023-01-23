@@ -69,7 +69,12 @@ const Home = () => {
     <Wrapper heading={"Countries list"}>
       <TableHead></TableHead>
       {paginatedData.map((country, i) => (
-        <Card key={i} country={country} index={i}></Card>
+        <Card
+          key={i}
+          country={country}
+          index={i}
+          currentPage={currentPage}
+        ></Card>
       ))}
       <Pagination
         totalPages={totalPages}
