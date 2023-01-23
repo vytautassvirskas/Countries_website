@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import style from "./Pagination.module.scss";
 import toPrev from "../../assets/images/angle-left.svg";
@@ -6,21 +6,42 @@ import toNext from "../../assets/images/angle-right.svg";
 
 const Pagination = (props) => {
   const { totalPages, currentPage, setCurrentPage, countriesPerPage } = props;
-  //rodo visus page is karto
-  //   const pageNumbers = [...Array(totalPages + 1).keys()].slice(1);
   const search = useLocation().search;
   const searchParams = new URLSearchParams(search);
 
+  //check currentPage
+  // useEffect(() => {
+  //   console.log("currentPage pagination komponente", currentPage);
+  //   console.log("currentPage typeof pagination komponente", typeof currentPage);
+  // }, [currentPage]);
+
+  const handleUrlParams = (pgNumber, param) => {
+    searchParams.set(param, pgNumber);
+    const newUrl = `${location.pathname}?${searchParams.toString()}`;
+    window.history.pushState({}, "", newUrl);
+  };
+
   const prevPage = () => {
     if (currentPage > 1) {
-      setCurrentPage((prevPage) => prevPage - 1);
+      setCurrentPage((prevPage) => {
+        handleUrlParams(prevPage - 1, "p");
+        return prevPage - 1;
+      });
     }
   };
 
   const nextPage = () => {
     if (currentPage < totalPages) {
-      setCurrentPage((prevPage) => prevPage + 1);
+      setCurrentPage((prevPage) => {
+        handleUrlParams(prevPage + 1, "p");
+        return prevPage + 1;
+      });
     }
+  };
+
+  const handleCurrentPage = (pgNumber) => {
+    setCurrentPage(pgNumber);
+    handleUrlParams(pgNumber, "p");
   };
 
   const getPaginationGroup = () => {
@@ -43,7 +64,7 @@ const Pagination = (props) => {
       .map((number, index) => start + index + 1);
   };
   const pageNumbers = getPaginationGroup();
-  // console.log("pageNumbers pagination componente", pageNumbers);
+  console.log("pageNumbers pagination componente", pageNumbers);
 
   return (
     <nav className={style.pagination}>
@@ -61,7 +82,7 @@ const Pagination = (props) => {
               className={
                 pgNumber === currentPage ? style["item--active"] : style.item
               }
-              onClick={() => setCurrentPage(pgNumber)}
+              onClick={() => handleCurrentPage(pgNumber)}
             >
               <button className={style.link}>{pgNumber}</button>
             </li>

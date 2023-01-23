@@ -16,17 +16,22 @@ const Home = () => {
     setFilterRegion,
     filterSize,
     setFilterSize,
+    currentPage,
+    setCurrentPage,
   } = useContext(MainContext);
 
-  const [currentPage, setCurrentPage] = useState(1);
   const [countriesPerPage] = useState(10);
   const [totalPages, setTotalPages] = useState(null);
   const [paginatedData, setPaginatedData] = useState([]);
 
   useEffect(() => {
+    if (data.length === 0) {
+      return;
+    }
+
     let dataCopy = [...data];
     if (filterSize) {
-      const area = data.find((country) => country.name === filterSize).area;
+      const area = dataCopy.find((country) => country.name === filterSize).area;
       dataCopy = dataCopy.filter((country) => country.area < area);
     }
 
@@ -41,6 +46,7 @@ const Home = () => {
       dataCopy.sort((a, b) => a.name.localeCompare(b.name));
     }
 
+    console.log("dataCopy:", dataCopy);
     const indexOfLastCountry = currentPage * countriesPerPage;
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
     setTotalPages(Math.ceil(dataCopy.length / countriesPerPage));
@@ -53,9 +59,9 @@ const Home = () => {
   }, [paginatedData]);
 
   //total page change
-  useEffect(() => {
-    console.log("totalPages pasikeite home komponente", totalPages);
-  }, [totalPages]);
+  // useEffect(() => {
+  //   console.log("totalPages pasikeite home komponente", totalPages);
+  // }, [totalPages]);
 
   console.log("HOme componentas renderinasi");
   return (

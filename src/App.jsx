@@ -13,9 +13,15 @@ import Home from "./pages/Home.jsx";
 
 function App() {
   const [data, setData] = useState([]);
-  const [sortType, setSortType] = useState("");
-  const [filterRegion, setFilterRegion] = useState("");
-  const [filterSize, setFilterSize] = useState("");
+  const searchParams = new URLSearchParams(window.location.search);
+  const [sortType, setSortType] = useState(searchParams.get("sort") || "");
+  const [filterRegion, setFilterRegion] = useState(
+    searchParams.get("filterRegion") || ""
+  );
+  const [filterSize, setFilterSize] = useState(
+    searchParams.get("filterSize") || ""
+  );
+  const [currentPage, setCurrentPage] = useState(+searchParams.get("p") || 1);
 
   const contextValues = {
     data,
@@ -26,7 +32,14 @@ function App() {
     setFilterRegion,
     filterSize,
     setFilterSize,
+    currentPage,
+    setCurrentPage,
   };
+
+  //filter size value checking
+  // useEffect(() => {
+  //   console.log("filterSize verte: ", filterSize);
+  // }, [filterSize]);
 
   //fetching data
   useEffect(() => {
