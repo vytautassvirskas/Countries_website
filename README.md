@@ -22,7 +22,7 @@ Website features:
 
 ### Links
 
-- Live Site URL: [here](https://marvelous-tartufo-a98a36.netlify.app/)
+- Live Site URL: [here](https://soft-belekoy-071262.netlify.app/)
 
 ## My process
 
