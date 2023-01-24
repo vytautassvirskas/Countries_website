@@ -12,7 +12,7 @@ import RootLayout from "./components/RootLayout/RootLayout.jsx";
 import Home from "./pages/Home.jsx";
 
 function App() {
-  console.log("App render pradzia");
+  // console.log("App render pradzia");
   const [data, setData] = useState([]);
   const searchParams = new URLSearchParams(window.location.search);
   const [sortType, setSortType] = useState(searchParams.get("sort") || "");
@@ -20,7 +20,7 @@ function App() {
     searchParams.get("filterRegion") || ""
   );
   const [filterSize, setFilterSize] = useState(
-    searchParams.get("filterSize") || ""
+    JSON.parse(searchParams.get("filterSize")) || false
   );
   const [currentPage, setCurrentPage] = useState(+searchParams.get("p") || 1);
   const [isLoading, setIsLoading] = useState({
@@ -41,14 +41,8 @@ function App() {
     setCurrentPage,
   };
 
-  //filter size value checking
-  useEffect(() => {
-    console.log("currentPage verte app komponente: ", currentPage);
-  }, [currentPage]);
-
   //fetching data
   useEffect(() => {
-    console.log("siunciasi data");
     setIsLoading((currentIsLoading) => {
       return { ...currentIsLoading, state: true };
     });
@@ -61,10 +55,9 @@ function App() {
           setIsLoading({ state: false, message: "" });
           setData(countriesData);
         }, 500);
-        console.log("countriesData: ", countriesData);
+        // console.log("countriesData: ", countriesData);
       } catch (error) {
         console.log(error);
-        console.log("suveike catch ir yra error");
         setIsLoading((currentIsLoading) => {
           return {
             ...currentIsLoading,

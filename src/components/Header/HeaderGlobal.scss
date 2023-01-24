@@ -1,0 +1,28 @@
+@import "../../assets/sass/variables.scss";
+
+.MuiFormGroup-root {
+  @include flexCenter;
+  margin-right: 15px;
+  margin-left: auto;
+}
+
+.MuiFormControlLabel-root {
+  margin-left: 0;
+  margin-right: 0;
+}
+.MuiButtonBase-root {
+  padding: 0 0.2rem 0 0;
+}
+//text class
+.MuiTypography-root {
+  font-family: $ff-primary;
+  color: $c-white;
+  transition: color 0.2s ease-in-out;
+  &:hover {
+    color: $c-veryDarkCyan;
+  }
+}
+
+.MuiSvgIcon-root {
+  color: $c-white;
+}

@@ -3,8 +3,7 @@ import Card from "../../components/Card/Card.jsx";
 import style from "./CardsWrapper.module.scss";
 
 const CardsWrapper = (props) => {
-  const { paginatedData, currentPage } = props;
-  console.log("paginatedData cardwrapper componente: ", paginatedData);
+  const { paginatedData, currentPage, data } = props;
   return (
     <>
       {paginatedData.length > 0 ? (
@@ -18,13 +17,14 @@ const CardsWrapper = (props) => {
             ></Card>
           ))}
         </ol>
-      ) : (
+      ) : null}
+      {paginatedData.length === 0 && data.length > 0 ? (
         <div className={style["message-wrapper"]}>
           <p className={style.message}>
-            No data found according to selected filter settings{" "}
+            No data found according to selected filter settings
           </p>
         </div>
-      )}
+      ) : null}
     </>
   );
 };
