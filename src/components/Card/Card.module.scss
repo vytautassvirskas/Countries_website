@@ -22,6 +22,9 @@
   font-size: $fs-heading-small;
   background-color: $c-lightCyan;
   border-radius: 0.3rem;
+  @media (width <= $rd-mobile) {
+    font-size: $fs-text;
+  }
 }
 
 .card:hover .information {

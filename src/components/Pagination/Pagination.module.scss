@@ -10,6 +10,9 @@
   @include flexCenter;
   margin-top: 1.8rem;
   gap: 1.5rem;
+  @media (width <= $rd-mobile) {
+    gap: 0.5rem;
+  }
 }
 .item {
   display: flex;
@@ -24,7 +27,6 @@
 }
 .item--active {
   @extend .item;
-
   background-color: $c-cyan;
 }
 .link {

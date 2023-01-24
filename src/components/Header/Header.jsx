@@ -130,41 +130,63 @@ const Header = () => {
       <Link to="/" className={style.logo} onClick={handleReset}>
         world countries
       </Link>
-      <FormGroup>
-        <StyledEngineProvider injectFirst>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={filterSize}
-                size="small"
-                onChange={handleFilterSize}
+      <div className={style.checkbox}>
+        <FormGroup>
+          <StyledEngineProvider injectFirst>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={filterSize}
+                  size="small"
+                  onChange={handleFilterSize}
+                />
+              }
+              label="smaller than Lithuania"
+            />
+          </StyledEngineProvider>
+        </FormGroup>
+      </div>
+      <div className={style["selects-wrapper"]}>
+        <Select
+          onChange={handleSort}
+          options={optionsSort}
+          value={sortType}
+          placeholder="sortable by"
+          styles={colorStyles}
+          className="react-select-container"
+          classNamePrefix="react-select"
+        ></Select>
+        <Select
+          onChange={handleFilterRegion}
+          options={optionsRegion}
+          value={filterRegion}
+          placeholder="region"
+          styles={colorStyles}
+          className="react-select-container"
+          classNamePrefix="react-select"
+        ></Select>
+      </div>
+      <div className={style["btn-checkbox-wrapper"]}>
+        <div className={style["checkbox-rd"]}>
+          <FormGroup>
+            <StyledEngineProvider injectFirst>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={filterSize}
+                    size="small"
+                    onChange={handleFilterSize}
+                  />
+                }
+                label="smaller than Lithuania"
               />
-            }
-            label="smaller than Lithuania"
-          />
-        </StyledEngineProvider>
-      </FormGroup>
-      <Select
-        onChange={handleSort}
-        options={optionsSort}
-        value={sortType}
-        placeholder="sortable by"
-        styles={colorStyles}
-        className="react-select-container"
-        classNamePrefix="react-select"
-      ></Select>
-      <Select
-        onChange={handleFilterRegion}
-        options={optionsRegion}
-        value={filterRegion}
-        placeholder="region"
-        styles={colorStyles}
-        className="react-select-container"
-        classNamePrefix="react-select"
-      ></Select>
-      <button className={style["clear-btn"]} onClick={handleReset}>
-        <Link className="">clear</Link>
-      </button>
+            </StyledEngineProvider>
+          </FormGroup>
+        </div>
+        <button className={style["clear-btn"]} onClick={handleReset}>
+          <Link className="">clear</Link>
+        </button>
+      </div>
     </header>
   );
 };

@@ -3,6 +3,9 @@
 .section {
   max-width: 50rem;
   margin: 0 auto;
+  @media (width <= $rd-mobile) {
+    // display: none;
+  }
 }
 .heading {
   font-size: $fs-heading-medium;

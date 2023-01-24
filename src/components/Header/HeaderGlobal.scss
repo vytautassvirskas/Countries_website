@@ -4,6 +4,10 @@
   @include flexCenter;
   margin-right: 15px;
   margin-left: auto;
+  @media (width <= $rd-mobile) {
+    // @include flexCenter;
+    margin-left: 0;
+  }
 }
 
 .MuiFormControlLabel-root {

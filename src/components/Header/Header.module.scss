@@ -1,12 +1,18 @@
 @import "../../assets/sass/variables.scss";
 
 .header {
-  display: flex;
+  @include flexCenter;
   position: relative;
   z-index: 10;
   background-color: $c-cyan;
   padding: 1.8rem 5rem;
   opacity: 0.8;
+  @media (width <= $rd-mobile) {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
 }
 .logo {
   @include flexCenter;
@@ -16,8 +22,29 @@
   text-decoration: none;
   text-transform: uppercase;
   font-weight: $fw-bold;
+  @media (width <= $rd-mobile) {
+    margin: 25px 0 15px;
+  }
+}
+.checkbox {
+  margin-left: auto;
+  @media (width <= $rd-mobile) {
+    display: none;
+  }
+}
+.selects-wrapper {
+  display: flex;
 }
 
+.btn-checkbox-wrapper {
+  @include flexCenter;
+}
+.checkbox-rd {
+  display: none;
+  @media (width <= $rd-mobile) {
+    display: block;
+  }
+}
 .clear-btn {
   background-color: transparent;
   border: none;
