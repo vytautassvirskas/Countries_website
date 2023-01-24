@@ -37,8 +37,8 @@ const Header = () => {
 
   const regionsArr = Array.from(regionsData());
 
-  // console.log("regionsArr: ", regionsArr);
-  // console.log("regionsArr typeof: ", typeof regionsArr);
+  console.log("regionsArr: ", regionsArr);
+  console.log("regionsArr typeof: ", typeof regionsArr);
 
   const handleReset = () => {
     console.log(window.location.href);
@@ -47,7 +47,7 @@ const Header = () => {
     location.replace(newUrl);
     setCurrentPage(1);
     setSortType("");
-    setFilterSize(false);
+    setFilterSize("");
     setFilterRegion("");
   };
 
@@ -64,26 +64,26 @@ const Header = () => {
     window.history.pushState({}, "", newUrl);
   };
   // bandymas
-  const handleUrlParams2 = (value, setState, param) => {
-    setState(value);
-    searchParams.set(param, value);
-    const newUrl = `${location.pathname}?${searchParams.toString()}`;
-    window.history.pushState({}, "", newUrl);
-  };
+  // const handleUrlParams2 = (value, setState, param) => {
+  //   setState(value);
+  //   searchParams.set(param, value);
+  //   const newUrl = `${location.pathname}?${searchParams.toString()}`;
+  //   window.history.pushState({}, "", newUrl);
+  // };
 
   const handleSort = (e) => {
     handleUrlParams(e, setSortType, "sort");
   };
 
   // bandymas
-  const handleSort2 = (selectedOption) => {
-    // handleUrlParams(e, setSortType, "sort");
-    console.log("sort select: ", selectedOption.value);
-    handleUrlParams2(selectedOption.value, setSortType, "sort");
-  };
+  // const handleSort2 = (selectedOption) => {
+  //   // handleUrlParams(e, setSortType, "sort");
+  //   console.log("sort select: ", selectedOption.value);
+  //   handleUrlParams2(selectedOption.value, setSortType, "sort");
+  // };
 
   const handleFilterSize = (e) => {
-    console.log("e:", e);
+    // console.log("e:", e);
     handleResetPage();
     handleUrlParams(e, setFilterSize, "filterSize");
   };
@@ -94,10 +94,10 @@ const Header = () => {
   };
 
   //check sortType, filter
-  useEffect(() => {
-    console.log("sortType header dalyje: ", sortType);
-    console.log("sortType header dalyje typeof: ", typeof sortType);
-  }, [sortType]);
+  // useEffect(() => {
+  //   console.log("sortType header dalyje: ", sortType);
+  //   console.log("sortType header dalyje typeof: ", typeof sortType);
+  // }, [sortType]);
   return (
     <header className={style.header}>
       <Link to="/" className={style.logo} onClick={handleReset}>

@@ -31,18 +31,22 @@ const Home = () => {
     }
 
     let dataCopy = [...data];
+
     if (filterSize) {
-      // const area = dataCopy.find((country) => country.name === filterSize).area;
-      const area = dataCopy.find(
-        (country) => country.name === "Lithuania"
-      ).area;
+      const area = dataCopy.find((country) => country.name === filterSize).area;
+      // const area = dataCopy.find(
+      //   (country) => country.name === "Lithuania"
+      // ).area;
       dataCopy = dataCopy.filter((country) => country.area < area);
     }
 
     if (filterRegion) {
-      dataCopy = dataCopy.filter(
-        (country) => country.region === "filterRegion"
+      console.log("filterRegion: ", filterRegion);
+      console.log(
+        "filtras pegal regiona: ",
+        dataCopy.filter((country) => country.region === filterRegion)
       );
+      dataCopy = dataCopy.filter((country) => country.region === filterRegion);
     }
 
     // apply sort criteria
@@ -52,7 +56,6 @@ const Home = () => {
       dataCopy.sort((a, b) => a.name.localeCompare(b.name));
     }
 
-    // console.log("dataCopy:", dataCopy);
     const indexOfLastCountry = currentPage * countriesPerPage;
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
     setTotalPages(Math.ceil(dataCopy.length / countriesPerPage));
@@ -63,11 +66,6 @@ const Home = () => {
   useEffect(() => {
     console.log("paginatedData pasikeite:", paginatedData);
   }, [paginatedData]);
-
-  //total page change
-  // useEffect(() => {
-  //   console.log("totalPages pasikeite home komponente", totalPages);
-  // }, [totalPages]);
 
   console.log("HOme componentas renderinasi");
   return (

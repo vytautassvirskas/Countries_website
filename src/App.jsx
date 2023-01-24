@@ -19,7 +19,7 @@ function App() {
     searchParams.get("filterRegion") || ""
   );
   const [filterSize, setFilterSize] = useState(
-    searchParams.get("filterSize") || false
+    searchParams.get("filterSize") || ""
   );
   const [currentPage, setCurrentPage] = useState(+searchParams.get("p") || 1);
 
@@ -50,20 +50,13 @@ function App() {
         const resp = await fetch(url);
         const countriesData = await resp.json();
         setData(countriesData);
-        // console.log("countriesData: ", countriesData);
+        console.log("countriesData: ", countriesData);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
   }, []);
-
-  const [regionsArr, setRegionsArr] = useState([]);
-
-  //regions array from data reikia perkelti i APP useefecta, kad ten is karto parsiuntus data, kad sukurtu array
-  // useEffect(() => {
-  //   console.log("header component useEffect veikia");
-  // }, [data]);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
