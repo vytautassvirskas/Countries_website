@@ -3,7 +3,8 @@ import { useLocation } from "react-router-dom";
 import MainContext from "../context/MainContext.js";
 import Wrapper from "../components/Wrapper/Wrapper.jsx";
 import TableHead from "../components/TableHead/TableHead.jsx";
-import Card from "../components/Card/Card.jsx";
+// import Card from "../components/Card/Card.jsx";
+import CardsWrapper from "../components/CardsWrapper/CardsWrapper.jsx";
 import Pagination from "../components/Pagination/Pagination.jsx";
 import style from "./Home.module.scss";
 
@@ -71,16 +72,10 @@ const Home = () => {
   return (
     <Wrapper heading={"Countries list"}>
       <TableHead></TableHead>
-      <ol>
-        {paginatedData.map((country, i) => (
-          <Card
-            key={i}
-            country={country}
-            index={i}
-            currentPage={currentPage}
-          ></Card>
-        ))}
-      </ol>
+      <CardsWrapper
+        paginatedData={paginatedData}
+        currentPage={currentPage}
+      ></CardsWrapper>
       <Pagination
         totalPages={totalPages}
         currentPage={currentPage}

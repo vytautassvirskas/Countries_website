@@ -1,0 +1,21 @@
+@import "../../assets/sass/variables.scss";
+
+.message-wrapper {
+  @include flexCenter;
+  padding: 2rem 0;
+  background-color: $c-white;
+  margin-bottom: 1.2rem;
+  border-radius: 0.6rem;
+  border: 1px solid transparent;
+}
+
+.message {
+  display: inline-block;
+  padding: 0.3rem 0.5rem;
+  color: $c-cyan;
+  font-size: $fs-heading-small;
+  background-color: $c-lightCyan;
+  border-radius: 0.3rem;
+  text-align: center;
+  font-size: $fs-heading-medium;
+}
