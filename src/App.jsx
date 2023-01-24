@@ -19,7 +19,7 @@ function App() {
     searchParams.get("filterRegion") || ""
   );
   const [filterSize, setFilterSize] = useState(
-    searchParams.get("filterSize") || ""
+    searchParams.get("filterSize") || false
   );
   const [currentPage, setCurrentPage] = useState(+searchParams.get("p") || 1);
 
@@ -50,7 +50,7 @@ function App() {
         const resp = await fetch(url);
         const countriesData = await resp.json();
         setData(countriesData);
-        console.log("countriesData: ", countriesData);
+        // console.log("countriesData: ", countriesData);
       } catch (error) {
         console.log(error);
       }

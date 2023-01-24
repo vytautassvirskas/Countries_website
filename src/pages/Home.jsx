@@ -32,12 +32,17 @@ const Home = () => {
 
     let dataCopy = [...data];
     if (filterSize) {
-      const area = dataCopy.find((country) => country.name === filterSize).area;
+      // const area = dataCopy.find((country) => country.name === filterSize).area;
+      const area = dataCopy.find(
+        (country) => country.name === "Lithuania"
+      ).area;
       dataCopy = dataCopy.filter((country) => country.area < area);
     }
 
     if (filterRegion) {
-      dataCopy = dataCopy.filter((country) => country.region === filterRegion);
+      dataCopy = dataCopy.filter(
+        (country) => country.region === "filterRegion"
+      );
     }
 
     // apply sort criteria
@@ -47,7 +52,7 @@ const Home = () => {
       dataCopy.sort((a, b) => a.name.localeCompare(b.name));
     }
 
-    console.log("dataCopy:", dataCopy);
+    // console.log("dataCopy:", dataCopy);
     const indexOfLastCountry = currentPage * countriesPerPage;
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
     setTotalPages(Math.ceil(dataCopy.length / countriesPerPage));
