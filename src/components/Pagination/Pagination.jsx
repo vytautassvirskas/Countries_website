@@ -9,12 +9,6 @@ const Pagination = (props) => {
   const search = useLocation().search;
   const searchParams = new URLSearchParams(search);
 
-  //check currentPage
-  // useEffect(() => {
-  //   console.log("currentPage pagination komponente", currentPage);
-  //   console.log("currentPage typeof pagination komponente", typeof currentPage);
-  // }, [currentPage]);
-
   const handleUrlParams = (pgNumber, param) => {
     searchParams.set(param, pgNumber);
     const newUrl = `${location.pathname}?${searchParams.toString()}`;
@@ -63,7 +57,7 @@ const Pagination = (props) => {
       .map((number, index) => start + index + 1);
   };
   const pageNumbers = getPaginationGroup();
-  // console.log("pageNumbers pagination componente", pageNumbers);
+  
   if (pageNumbers.length <= 1) return null;
   return (
     <nav className={style.pagination}>

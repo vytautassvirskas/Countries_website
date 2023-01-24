@@ -80,8 +80,12 @@ const Header = () => {
       fontSize: "14px",
       borderColor: state.isFocused ? "hsl(180, 14%, 20%)" : "white",
     }),
-    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-      return { ...styles, color: "hsl(180, 14%, 20%)" };
+    option: (styles, state) => {
+      return {
+        ...styles,
+        color: "hsl(180, 14%, 20%)",
+        background: state.isFocused ? "hsl(180, 29%, 50%)" : "white",
+      };
     },
   };
 

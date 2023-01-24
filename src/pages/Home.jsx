@@ -35,11 +35,6 @@ const Home = () => {
     }
 
     if (filterRegion.value) {
-      console.log("filterRegion home funkcijoje: ", filterRegion.value);
-      console.log(
-        "filtras pegal regiona: ",
-        dataCopy.filter((country) => country.region === filterRegion.value)
-      );
       dataCopy = dataCopy.filter(
         (country) => country.region === filterRegion.value
       );
