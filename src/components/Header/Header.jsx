@@ -41,15 +41,13 @@ const Header = () => {
   console.log("regionsArr typeof: ", typeof regionsArr);
 
   const handleReset = () => {
-    console.log(window.location.href);
-    let currentUrl = window.location.href;
-    let newUrl = currentUrl.substring(0, currentUrl.indexOf("?"));
-    location.replace(newUrl);
     setCurrentPage(1);
     setSortType("");
     setFilterSize("");
     setFilterRegion("");
   };
+
+  const handleClearUrl = () => {};
 
   const handleResetPage = () => {
     setCurrentPage(1);
@@ -168,8 +166,9 @@ const Header = () => {
         <option value=""> fitered smaller than:</option>
         <option value="Lithuania">Lithuania</option>
       </select>
-      <button className={style.clear} onClick={handleReset}>
-        clear
+      <button className={style["clear-btn"]} onClick={handleReset}>
+        <Link className="">clear</Link>
+        
       </button>
     </header>
   );

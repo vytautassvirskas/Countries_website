@@ -6,11 +6,10 @@ import style from "./RootLayout.module.scss";
 
 const RootLayout = (props) => {
   const { isLoading } = props;
-  console.log("isLoading object: ", isLoading);
   return (
     <>
       <Header />
-      <main className={!isLoading ? style.main : style["main--center"]}>
+      <main className={!isLoading.state ? style.main : style["main--center"]}>
         {isLoading.state ? <Loader message={isLoading.message}></Loader> : null}
         {!isLoading.state ? <Outlet /> : null}
       </main>

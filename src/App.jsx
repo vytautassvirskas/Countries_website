@@ -12,6 +12,7 @@ import RootLayout from "./components/RootLayout/RootLayout.jsx";
 import Home from "./pages/Home.jsx";
 
 function App() {
+  console.log("App render pradzia");
   const [data, setData] = useState([]);
   const searchParams = new URLSearchParams(window.location.search);
   const [sortType, setSortType] = useState(searchParams.get("sort") || "");

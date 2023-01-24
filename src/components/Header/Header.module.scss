@@ -44,14 +44,17 @@
 //   }
 // }
 
-.clear {
+.clear-btn {
   // margin-left: 0.9rem;
-  color: $c-white;
   background-color: transparent;
   border: none;
   cursor: pointer;
-  transition: color 0.2s ease-in-out;
-  &:hover {
+  & a {
+    text-decoration: none;
+    color: $c-white;
+    transition: color 0.2s ease-in-out;
+  }
+  & a:hover {
     color: $c-veryDarkCyan;
   }
 }
