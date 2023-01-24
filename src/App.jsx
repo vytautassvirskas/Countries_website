@@ -22,6 +22,10 @@ function App() {
     searchParams.get("filterSize") || ""
   );
   const [currentPage, setCurrentPage] = useState(+searchParams.get("p") || 1);
+  const [isLoading, setIsLoading] = useState({
+    state: false,
+    message: "",
+  });
 
   const contextValues = {
     data,
@@ -44,15 +48,29 @@ function App() {
   //fetching data
   useEffect(() => {
     console.log("siunciasi data");
+    setIsLoading((currentIsLoading) => {
+      return { ...currentIsLoading, state: true };
+    });
     const fetchData = async () => {
       try {
         const url = "https://restcountries.com/v2/all?fields=name,region,area";
         const resp = await fetch(url);
         const countriesData = await resp.json();
-        setData(countriesData);
+        setTimeout(() => {
+          setIsLoading({ state: false, message: "" });
+          setData(countriesData);
+        }, 500);
         console.log("countriesData: ", countriesData);
       } catch (error) {
         console.log(error);
+        console.log("suveike catch ir yra error");
+        setIsLoading((currentIsLoading) => {
+          return {
+            ...currentIsLoading,
+            state: true,
+            message: "Failed to fetch data. Try again",
+          };
+        });
       }
     };
     fetchData();
@@ -60,8 +78,9 @@ function App() {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<RootLayout />}>
+      <Route path="/" element={<RootLayout isLoading={isLoading} />}>
         <Route index element={<Home />} />
+        <Route path="*" element={<Home />} />
       </Route>
     )
   );

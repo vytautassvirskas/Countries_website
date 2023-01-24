@@ -4,3 +4,7 @@
   margin: 2.2rem 0 5.5rem;
   min-height: calc(100vh - 259.2px); /*minus header and footer hight*/
 }
+.main--center {
+  @extend .main;
+  @include flexCenter;
+}
