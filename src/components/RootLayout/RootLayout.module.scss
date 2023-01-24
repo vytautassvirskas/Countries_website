@@ -1,5 +1,6 @@
 @import "../../assets/sass/variables.scss";
 .main {
-  margin: 2.2rem 0;
-  min-height: calc(100vh - 206.4px); /*minus header and footer hight*/
+  position: relative;
+  margin: 2.2rem 0 5.5rem;
+  min-height: calc(100vh - 259.2px); /*minus header and footer hight*/
 }

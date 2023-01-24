@@ -3,7 +3,7 @@ import style from "./Card.module.scss";
 
 const Card = ({ country, index, currentPage }) => {
   return (
-    <div className={style.card}>
+    <li className={style.card}>
       <div className={style.wrapper}>
         <p className={style.information}>
           {currentPage === 1
@@ -22,7 +22,7 @@ const Card = ({ country, index, currentPage }) => {
       <div className={style.wrapper}>
         <p className={style.information}>{country.region}</p>
       </div>
-    </div>
+    </li>
   );
 };
 

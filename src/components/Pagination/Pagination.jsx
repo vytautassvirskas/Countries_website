@@ -54,7 +54,6 @@ const Pagination = (props) => {
       return [...Array(totalPages).keys()].map((i) => i + 1);
     }
     if (start >= startLastPage && start + countriesPerPage > totalPages) {
-      console.log("jau VEIKIA");
       return new Array(totalPages - start)
         .fill()
         .map((number, index) => start + index + 1);
@@ -64,8 +63,8 @@ const Pagination = (props) => {
       .map((number, index) => start + index + 1);
   };
   const pageNumbers = getPaginationGroup();
-  // console.log("pageNumbers pagination componente", pageNumbers);
-
+  console.log("pageNumbers pagination componente", pageNumbers);
+  if (pageNumbers.length <= 1) return null;
   return (
     <nav className={style.pagination}>
       <ul className={style.list}>

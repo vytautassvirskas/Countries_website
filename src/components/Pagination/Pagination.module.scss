@@ -1,8 +1,14 @@
 @import "../../assets/sass/variables.scss";
 
+.pagination {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  right: 0;
+}
 .list {
   @include flexCenter;
-  margin-top: 0.9rem;
+  margin-top: 1.8rem;
   gap: 1.5rem;
 }
 .item {
